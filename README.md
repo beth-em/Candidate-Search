@@ -39,5 +39,5 @@ This project is licensed under the MIT license.
 [!No Saved Candidates](/Users/elizabethmurillo/module-13/Candidate-Search/Develop/assets/Screenshot 2025-04-07 at 9.53.00 PM (2).jpeg)
 
 ## Links
-GitHub Repository: 
+GitHub Repository: https://github.com/beth-em/Candidate-Search.git
 Deployement Link:
