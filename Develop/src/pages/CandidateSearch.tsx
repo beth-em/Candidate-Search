@@ -2,16 +2,17 @@ import { useState, useEffect } from 'react';
 import { Candidate } from '../interfaces/Candidate.interface.tsx';
 import { searchGithub, searchGithubUser } from '../api/API.tsx';
 
-// Function for a list of candidates, savedCandidates and a current candidate.
+// Function to display a list of candidates, savedCandidates and a current candidate.
 const CandidateSearch = () => {
   const [candidates, setCandidates] = useState<Candidate[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [savedCandidates, setSavedCandidates] = useState<Candidate[]>([]);
 
-  // Fetch candidates from GitHub APIact
+  // Fetch candidates from GitHub and view their full profiles
   useEffect(() => {
     console.log('Token:', import.meta.env.VITE_GITHUB_TOKEN);
 
+    // First, get a list of Github users
     const fetchCandidates = async () => {
       try {
       const users = await searchGithub();
@@ -20,11 +21,13 @@ const CandidateSearch = () => {
         return;
       }
 
+      // Second, Use usernames from that list to fetch full user profiles
       const profiles = await Promise.all(
         users.slice(0, 10).map((user: any) => searchGithubUser(user.login))
       );
-      console.log('Profiles returned:', profiles);
+      console.log('Profiles returned:', profiles);   // debugging API data
 
+      // Third, convert API data into 'Candidate' objects
       const formatted: Candidate[] = profiles.map((profile: any) => ({
         name: profile.name || 'N/A',
         username: profile.login,
@@ -35,6 +38,7 @@ const CandidateSearch = () => {
         company: profile.company,
       }));
 
+      // Then, save to state
       setCandidates(formatted);
     } catch (error) {
       console.error("Error fetching candiddates:", error)
@@ -52,6 +56,7 @@ const CandidateSearch = () => {
 
   const currentCandidate = candidates[currentIndex];
   
+  // Function to save the current candidate to the saved list and move on to the next candidate
   const handleSave = () => {
     const updated = [...savedCandidates, currentCandidate];
     setSavedCandidates(updated);

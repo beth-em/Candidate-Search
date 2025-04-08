@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Candidate } from '../interfaces/Candidate.interface';
 
+// Function to display all candidates and allow users to review saved candidates and remove (reject) from the list
 const SavedCandidates = () => {
   const [savedCandidates, setSavedCandidates] = useState<Candidate[]>([]);
 
