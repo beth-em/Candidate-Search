@@ -1,6 +1,2 @@
-node_modules
-dist
-.gitignore
-.env
-.env
+Develop/.env
 .env
