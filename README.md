@@ -40,4 +40,4 @@ This project is licensed under the MIT license.
 
 ## Links
 GitHub Repository: https://github.com/beth-em/Candidate-Search.git
-Deployement Link:
+Deployement Link: https://candidate-search-lyr7.onrender.com
